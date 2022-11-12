@@ -1,0 +1,81 @@
+[build-system]
+build-backend = "setuptools.build_meta"
+requires = ["setuptools>=61"]
+
+[project]
+authors = [{ name = "Matija Kordic"}]
+name = "forest_analysis"
+version = "0.0.0"
+readme = "README.md"
+description = "Unified repo for dealing with acquisition of satellite data and processing"
+keywords = ["forest_analysis"]
+classifiers = [
+    "Development Status :: 1 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX",
+    "Operating System :: Unix",
+    "Topic :: Scientific/Engineering :: GIS/ML",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed"
+]
+requires-python = ">=3.8"
+
+dependencies = []
+
+[tool.setuptools]
+zip-safe = false
+include-package-data = true
+package-data = { "forest_analysis" = ["py.typed"] }
+
+[tool.setuptools.packages.find]
+include = ["forest_analysis*"]
+exclude = ["tests*"]
+namespaces = false              # to disable scanning PEP 420 namespaces
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore:disutils:DeprecationWarning",
+]
+
+[tool.isort]
+profile = "black"
+src_paths = ["forest_analysis", "test"]
+color_output = true
+ensure_newline_before_comments = true
+force_grid_wrap = 0
+include_trailing_comma = true
+line_length = 88
+lines_between_types = 1
+use_parentheses = true
+
+[tool.mypy]
+python_version = "3.9"
+
+[tool.pydocstyle]
+convention = "google"
+add-ignore = [
+    "D105", # magic methods don't need docstrings
+    "D100", # public modules don't need docstrings
+    "D104", # public packages don't need docstrings
+]
+
+[tool.coverage.paths]
+source = ["forest_analysis", "*/site-packages"]
+
+[tool.coverage.run]
+branch = true
+source = ["forest_analysis"]
+omit = ["*__init__*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 0
