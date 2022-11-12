@@ -1,0 +1,17 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@2.0.3
+
+workflows:
+  checks:
+    jobs:
+      -lint-and-type-checks
+
+  jobs:
+    lint-and-type-checks:
+      docker:
+        - image: cimg/python:3.8
+      steps:
+        - checkout
+        - add_ssh_keys:
